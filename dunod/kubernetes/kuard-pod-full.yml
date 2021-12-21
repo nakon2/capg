@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard
+spec:
+  volumes:
+  - name: "kuard-data"
+    nfs:
+      server: 127.0.0.1
+      path: "/mnt/share"
+  containers:
+  - image: dowa/kuard:1
+    name: kuard
+    ports:
+    - containerPort: 8080
+      name: http
+      protocol: TCP
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "128Mi"
+      limits:
+        cpu: "1000m"
+        memory: "256Mi"
+    volumeMounts:
+    - mountPath: "/data"
+      name: "kuard-data"

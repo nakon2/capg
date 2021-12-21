@@ -1,0 +1,27 @@
+version: "3"
+services:
+  wordpress:
+    image: wordpress:4.9
+    ports:
+      - 80:80
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=nakon
+      - WORDPRESS_DB_PASSWORD=nakonxxz
+      - WORDPRESS_DB_NAME=wordp
+    restart: unless-stopped
+    networks:
+      - galaxie
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=karxuo2
+      - MYSQL_DATABASE=wordp
+      - MYSQL_USER=nakon
+      - MYSQL_PASSWORD=nakonxxz
+    restart: unless-stopped
+    networks:
+      - galaxie
+#volumes:
+networks:
+  galaxie:

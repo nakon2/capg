@@ -1,0 +1,16 @@
+---
+
+- name: "Configuration de la base de donnée"
+  hosts: "database"
+  gather_facts: no
+  tasks:
+    - name: "Création de la base de données"
+      mysql_db:
+        name: "wordpress"
+        state: present
+    - name: "Création de l'utilisateur"
+      mysql_user:
+        name: "wordpress"
+        password: "wordpress"
+        priv: "wordpress.*:ALL"
+        state: present

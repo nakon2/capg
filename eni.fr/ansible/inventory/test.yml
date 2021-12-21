@@ -1,0 +1,19 @@
+---
+
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+
+front:
+  hosts:
+    frontal-web-1:
+      ansible_host: 192.168.0.37
+      ansible_user: nakon
+
+
+database:
+  hosts:
+    bdd-dev-1:
+      ansible_host: 192.168.0.37
+      ansible_user: nakon

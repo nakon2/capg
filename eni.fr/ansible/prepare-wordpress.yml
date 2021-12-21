@@ -1,0 +1,21 @@
+---
+
+- name: "Install Wordpress"
+  hosts: "front"
+  gather_facts: no
+  tasks:
+    - name: "Download Wordpress"
+      get_url:
+        url: "https://fr.wordpress.org/latest-fr_FR.tar.gz"
+        dest: "{{ playbook_dir  }}/latest-fr_FR.tar.gz"
+      delegate_to: localhost
+    - name: "Unarchive Wordpress"
+      unarchive:
+        src: "{{ playbook_dir }}/latest-fr_FR.tar.gz"
+        dest: "/var/www/html"
+        owner: "www-data"
+        group: "www-data"
+
+
+
+

@@ -1,0 +1,10 @@
+localhost
+
+[front]
+frontal-dev-1 ansible_host=192.168.0.37
+
+[database]
+bdd-dev-1 ansible_host=192.168.0.37
+
+[front:vars]
+ansible_user=nakon

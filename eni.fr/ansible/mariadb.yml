@@ -1,0 +1,20 @@
+---
+
+- name: "Installation mariaDB"
+  hosts: "database"
+  gather_facts: no
+  tasks:
+    - name: "Installtion mariaDB server"
+      package:
+        name: "mariadb-server"
+        state: present
+    - name: "Installation mariaDB client & python mysql"
+      package:
+        name: "mariadb-client, python3-mysqldb"
+        state: present
+    - name: "Démarrage du service mariadb"
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+

@@ -1,0 +1,37 @@
+---
+
+- name: "Installation de la version 7.3 de php"
+  hosts: front
+  gather_facts: no
+  handlers:
+    - name : "Restart apache"
+      service:
+        name: apache2
+        enable: yes
+        state: restarted
+  tasks:
+    - name: "Ajout du dépôt"
+      package:
+        name: "ca-certificates,apt-transport-https,lsb-release"
+        state: present
+    - name: "Ajout des  sources repository into sources list php7.3"
+      ansible.builtin.apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+        update_cache: yes
+    - name: "Installation de php"
+      package:
+        name: 
+          - php7.3-cli
+          - php7.3-common
+          - php7.3-curl
+          - php7.3-mbstring
+          - php7.3-mysql
+          - php7.3-xml
+          - php7.3-gd
+          - php7.3-mcrypt
+          - php7.3-mysqlnd
+        state: present
+        update_cache: true
+      notify: "Restart apache"
+

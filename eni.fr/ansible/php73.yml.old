@@ -1,0 +1,24 @@
+---
+
+- name: "Installation de la version 7.3 de php"
+  hosts: front
+  gather_facts: no
+  tasks:
+    - name: "Ajout du dépôt"
+      package:
+        name: "ca-certificates,apt-transport-https,lsb-release"
+        state: present
+    - name: "Ajout des  sources repository into sources list php7.3"
+      ansible.builtin.apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+        update_cache: yes
+    - name: "Installation de php"
+      package:
+        name: php7.3
+        state: present
+    - name: "install other package of php"
+      package: 
+        name: php7.3-cli
+        state: present
+
