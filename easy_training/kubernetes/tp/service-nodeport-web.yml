@@ -1,0 +1,14 @@
+apiVersion: 1
+kind: Service
+metadata:
+  name: service-nodeport-web
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+  - protocol: TCP #On utilise le protocol TCP
+    port: 8080 # port d'écoute en interne dans le cluster
+    targetPort: 8080 # le port par lequel le service attaque les pods qui sont derrière lui. En gros c'est le port que le service va interoger au niveau du pod. le port d'écoute de notre conteneur
+    nodePort: 30008  # le port à exposer à l'extérieur. c'est celui qu'on va atteindre depuis l'extérieur
+
